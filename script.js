@@ -1,13 +1,20 @@
 // LOADER REMOVAL
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        const loader = document.getElementById("loader");
+const removeLoader = () => {
+    const loader = document.getElementById("loader");
+    if (loader && loader.style.display !== "none") {
         loader.style.opacity = "0";
         setTimeout(() => {
             loader.style.display = "none";
         }, 800);
-    }, 1500); // Wait 1.5s to show the cool VIZ loader
+    }
+};
+
+window.addEventListener("load", () => {
+    setTimeout(removeLoader, 1500); // Wait 1.5s to show the cool VIZ loader
 });
+
+// Fallback: Remove loader after 5 seconds regardless of load event
+setTimeout(removeLoader, 5000);
 
 // TYPING EFFECT
 const textArray = ["AI/ML Student", "Web Developer", "Creative Thinker", "Tech Enthusiast"];
